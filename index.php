@@ -42,8 +42,11 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
 		<link rel="stylesheet" type="text/css" href="inc/css.css">
 	</head>
 	<body>
-		<div class="col-md-12" id="busca">
-				<input id="search" type="text" class="form-control" placeholder="Digite o termo e clique ENTER">
+		<div class="col-md-1" id="logo">
+			<img src="img/logo.jpg">
+		</div>
+		<div class="col-md-11" id="busca">
+			<input id="search" type="text" class="form-control" placeholder="Digite o termo e clique ENTER">
 		</div>
 		<div style="clear: both"></div>
 		<div class="col-md-12">
@@ -136,6 +139,7 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
 			function buscar(){
 				$( "#linhasalas td" ).css( "background-color", "white" );
 				$( "td:contains("+$('#search').val()+")" ).css( "background-color", "red" );
+				$( "#contador" ).load( "scripts/contador.php", {a:1} );
 			}
 			/* ao pressionar ENTER irá fazer a busca */
 			$(document).keypress(function(e) {
@@ -143,8 +147,11 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
     					buscar();
     				}
     			});
+    			$(document).ready(function(e) {
+    				$( "#contador" ).load( "scripts/contador.php" );
+    			});
 		</script>
-	 
+	 	<div id="contador"></div>
 	</body>
 </html>
 <?

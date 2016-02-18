@@ -4,6 +4,7 @@
 #busca {
 	margin-top: 20px;
 	margin-bottom: 20px;
+	padding-top: 40px;
 }
 th, td {
 	text-align: center;
@@ -14,4 +15,11 @@ th, td {
 }
 #cab2 {
 	background-color: #ccc;
+}
+#logo img {
+	width: 120px;
+	height: 164px;
+}
+#contador {
+	text-align: center;
 }
