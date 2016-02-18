@@ -2,7 +2,7 @@
 /** 
   * Script para pesquisar nomes de profissionais ou grupos em um CAPS
   * Imbé, Rio Grande do Sul, Brasil
-  * Tiago Floriano <https://github.com/paico>
+  * Tiago Floriano <https://github.com/paico/capshorarios>
   *
   * Este programa e software livre; voce pode redistribui-lo e/ou
   * modifica-lo sob os termos da Licenca Publica Geral GNU, conforme
