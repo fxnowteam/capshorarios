@@ -32,7 +32,7 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
 		<meta charset="ISO-8859-1">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
+		<link rel="shortcut icon" type="image/png" href="img/ico.png" />
 		<title>Hor&aacute;rios CAPS</title>
 		
 		<script src="inc/jquery.js"></script>
