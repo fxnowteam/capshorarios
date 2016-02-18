@@ -1,0 +1,17 @@
+#linhasalas td {
+	 border-right: solid 1px #ccc !important;
+}
+#busca {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+th, td {
+	text-align: center;
+	font-size: 12px;
+}
+#cab1 {
+	background-color: #aaa;
+}
+#cab2 {
+	background-color: #ccc;
+}
