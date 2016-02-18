@@ -134,7 +134,7 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
 			};
 			/* fim do trecho retirado do stackoverflow */
 			function buscar(){
-				$( "td" ).css( "background-color", "white" );
+				$( "#linhasalas td" ).css( "background-color", "white" );
 				$( "td:contains("+$('#search').val()+")" ).css( "background-color", "red" );
 			}
 			/* ao pressionar ENTER irá fazer a busca */
