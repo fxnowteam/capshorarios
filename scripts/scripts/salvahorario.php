@@ -28,11 +28,10 @@ $conecta = mysql_connect("localhost","Vtz4cjrq5v","Y[_3^DuT7#") or die(mysql_err
 $seldb = mysql_select_db("caps") or die(mysql_error());
 
 if($_POST["a"] == 1){
-	$ins = mysql_query("UPDATE contador SET contador=contador+1") or die(mysql_error());
+	$id = mysql_real_escape_string($_POST["id"]);
+	$campo = mysql_real_escape_string($_POST["campo"]);
+	$descricao = mysql_real_escape_string($_POST["descricao"]);
+	$ins = mysql_query("UPDATE salas SET $campo = '$descricao' WHERE id = '$id'") or die(mysql_error());
 }
-
-$sel = mysql_query("SELECT * FROM contador") or die(mysql_error());
-$r = mysql_fetch_array($sel);
-echo "<small>Foram realizadas {$r["contador"]} pesquisas.";
 
 mysql_close($conecta);
