@@ -83,18 +83,18 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
 		    while($r = mysql_fetch_array($sel)){
 		    ?>
 		    <tbody>
-		      <tr id="linhasalas" class="warning">
-			<td><?= $r["nomesala"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segmanha','<?= str_replace("<br>","",$r["segmanha"]) ?>')"><?= $r["segmanha"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segtarde','<?= str_replace("<br>","",$r["segtarde"]) ?>')"><?= $r["segtarde"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','termanha','<?= str_replace("<br>","",$r["termanha"]) ?>')"><?= $r["termanha"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','tertarde','<?= str_replace("<br>","",$r["tertarde"]) ?>')"><?= $r["tertarde"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quamanha','<?= str_replace("<br>","",$r["quamanha"]) ?>')"><?= $r["quamanha"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quatarde','<?= str_replace("<br>","",$r["quatarde"]) ?>')"><?= $r["quatarde"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quimanha','<?= str_replace("<br>","",$r["quimanha"]) ?>')"><?= $r["quimanha"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quitarde','<?= str_replace("<br>","",$r["quitarde"]) ?>')"><?= $r["quitarde"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sexmanha','<?= str_replace("<br>","",$r["sexmanha"]) ?>')"><?= $r["sexmanha"] ?></td>
-			<td id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sextarde','<?= str_replace("<br>","",$r["sextarde"]) ?>')"><?= $r["sextarde"] ?></td>
+		      <tr id="linhasalas">
+			<td class="warning"><?= $r["nomesala"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segmanha','<?= str_replace("<br>","",$r["segmanha"]) ?>')"><?= $r["segmanha"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segtarde','<?= str_replace("<br>","",$r["segtarde"]) ?>')"><?= $r["segtarde"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','termanha','<?= str_replace("<br>","",$r["termanha"]) ?>')"><?= $r["termanha"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','tertarde','<?= str_replace("<br>","",$r["tertarde"]) ?>')"><?= $r["tertarde"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quamanha','<?= str_replace("<br>","",$r["quamanha"]) ?>')"><?= $r["quamanha"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quatarde','<?= str_replace("<br>","",$r["quatarde"]) ?>')"><?= $r["quatarde"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quimanha','<?= str_replace("<br>","",$r["quimanha"]) ?>')"><?= $r["quimanha"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quitarde','<?= str_replace("<br>","",$r["quitarde"]) ?>')"><?= $r["quitarde"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sexmanha','<?= str_replace("<br>","",$r["sexmanha"]) ?>')"><?= $r["sexmanha"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sextarde','<?= str_replace("<br>","",$r["sextarde"]) ?>')"><?= $r["sextarde"] ?></td>
 		      </tr>
 		    </tbody>
 		    <?
@@ -142,6 +142,12 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
 					
 				</div>
 				
+			</div>
+			
+			<div id="imprimir">
+				<button type="button" class="btn btn-primary" onclick="window.print();" id="form3">
+					Imprimir
+				</button>
 			</div>
 
 	 	<div id="contador"></div>

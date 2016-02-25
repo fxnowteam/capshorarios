@@ -27,3 +27,8 @@ a {
 	font-size: 12px !important;
 	color: #000;
 }
+@media print{    
+    #contador, #busca, #logo, #imprimir {
+        display: none !important;
+    }
+}
