@@ -26,6 +26,61 @@
   
 $conecta = mysql_connect("localhost","Vtz4cjrq5v","Y[_3^DuT7#") or die(mysql_error());
 $seldb = mysql_select_db("caps") or die(mysql_error());
+
+function exibe($texto){
+    
+    /*
+     * Esta função captura o texto do banco de dados, localiza uma data e acrescenta 14 dias nela, até que esta data seja superior a data do dia.
+     * Ela foi criada porque neste CAPS alguns atendimentos são quinzenais, e para que não seja preciso uma atualização manual a cada 15 dias,
+     * esta função exibe automaticamente a próxima data.
+     * Para que funcione, o texto precisa estar no seguinte formato:
+     * >>>dd/mm/YYYY
+     * Note a presença de 3 caracteres ">" antes da data, e sem espaço entre este caracter e a data. Isto evita que se crie um novo campo no banco de dados.
+     * Se houver mais de uma data, elas devem estar entre parenteses:
+     * Fulano (quinzenal >>>dd/mm/YYYY) e Ciclano (quinzenal >>>dd/mm/YYYY)
+     */
+    
+    $trata = explode(">>>",$texto); //delimitador que informa ao sistema que após aquele ponto há uma data
+    $num = count($trata); //conta quantas datas. Normal = 2
+    if($trata[1] != ""){ //se houver algo aqui, é porque realmente havia uma data
+        $contador = 0; // controla o while
+        //captura as datas
+        while(($contador + 1) <= $num){
+            //particiona a data que está no formato dd/mm/YYYY
+            $pegadata = explode("/",$trata[$contador+1]);
+            $pegadia = $pegadata[0];
+            $pegames = $pegadata[1];
+            $pegaano = explode(")",$pegadata[2]);
+            $pegaano = $pegaano[0];
+            
+            //organiza a data no formato americano
+            $data = date("Y")."-$pegames-$pegadia";
+            //adiciona 14 dias
+            $novadata = date("Y-m-d",strtotime("+14 days",strtotime($data)));
+            //verifica se aqueles 14 dias são superiores ao dia de hoje, se não são, acrescenta mais 14 dias até que seja suficiente
+            if($novadata < date("Y-m-d")){
+                $novadata = date("Y-m-d",strtotime("+14 days",strtotime($novadata)));
+            }
+            //a partir da soma anterior, cria mais uma data com mais 14 dias, para ampliar a informação
+            $novadata2 = date("Y-m-d",strtotime("+14 days",strtotime($novadata)));
+            
+            //trata novamente a data, transformando-a no formato dd/mm
+            $data1 = explode("-",$novadata);
+            $data1 = $data1[2]."/".$data1[1];
+            $data2 = explode("-",$novadata2);
+            $data2 = $data2[2]."/".$data2[1];
+            
+            //substitui a data que está no texto do banco de dados
+            $texto = str_replace("$pegadia/$pegames/$pegaano"," $data1 - $data2",$texto);
+            
+            //atualiza a variável $trata, usada no início desta função com o texto extraido direto do banco. Agora ela será usada, se houver mais datas para atualizar, com o texto atualizado
+            $trata = explode(">>>",$texto);
+            //soma o contador para refazer o loop até que não haja mais datas para atualizar
+            $contador++;
+        }
+    }
+    return $texto;
+}
 ?><!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -85,16 +140,16 @@ $seldb = mysql_select_db("caps") or die(mysql_error());
 		    <tbody>
 		      <tr id="linhasalas">
 			<td class="warning"><?= $r["nomesala"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segmanha','<?= str_replace("<br>","",$r["segmanha"]) ?>')"><?= $r["segmanha"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segtarde','<?= str_replace("<br>","",$r["segtarde"]) ?>')"><?= $r["segtarde"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','termanha','<?= str_replace("<br>","",$r["termanha"]) ?>')"><?= $r["termanha"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','tertarde','<?= str_replace("<br>","",$r["tertarde"]) ?>')"><?= $r["tertarde"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quamanha','<?= str_replace("<br>","",$r["quamanha"]) ?>')"><?= $r["quamanha"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quatarde','<?= str_replace("<br>","",$r["quatarde"]) ?>')"><?= $r["quatarde"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quimanha','<?= str_replace("<br>","",$r["quimanha"]) ?>')"><?= $r["quimanha"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quitarde','<?= str_replace("<br>","",$r["quitarde"]) ?>')"><?= $r["quitarde"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sexmanha','<?= str_replace("<br>","",$r["sexmanha"]) ?>')"><?= $r["sexmanha"] ?></td>
-			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sextarde','<?= str_replace("<br>","",$r["sextarde"]) ?>')"><?= $r["sextarde"] ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segmanha','<?= str_replace("<br>","",$r["segmanha"]) ?>')"><?= exibe($r["segmanha"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','segtarde','<?= str_replace("<br>","",$r["segtarde"]) ?>')"><?= exibe($r["segtarde"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','termanha','<?= str_replace("<br>","",$r["termanha"]) ?>')"><?= exibe($r["termanha"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','tertarde','<?= str_replace("<br>","",$r["tertarde"]) ?>')"><?= exibe($r["tertarde"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quamanha','<?= str_replace("<br>","",$r["quamanha"]) ?>')"><?= exibe($r["quamanha"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quatarde','<?= str_replace("<br>","",$r["quatarde"]) ?>')"><?= exibe($r["quatarde"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quimanha','<?= str_replace("<br>","",$r["quimanha"]) ?>')"><?= exibe($r["quimanha"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','quitarde','<?= str_replace("<br>","",$r["quitarde"]) ?>')"><?= exibe($r["quitarde"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sexmanha','<?= str_replace("<br>","",$r["sexmanha"]) ?>')"><?= exibe($r["sexmanha"]) ?></td>
+			<td class="warning" id="modal-634306" href="#modal-container-634306" role="button" data-toggle="modal" onclick="alteraHorario('<?= $r["id"] ?>','sextarde','<?= str_replace("<br>","",$r["sextarde"]) ?>')"><?= exibe($r["sextarde"]) ?></td>
 		      </tr>
 		    </tbody>
 		    <?

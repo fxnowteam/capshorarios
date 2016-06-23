@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.2.12deb2+deb8u1
 -- http://www.phpmyadmin.net
 --
--- Máquina: localhost
--- Data de Criação: 18-Fev-2016 às 15:19
--- Versão do servidor: 5.5.47-0ubuntu0.14.04.1
--- versão do PHP: 5.5.9-1ubuntu4.14
+-- Host: localhost
+-- Generation Time: 23-Jun-2016 às 12:34
+-- Versão do servidor: 5.5.49-0+deb8u1
+-- PHP Version: 5.6.22-0+deb8u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de Dados: `caps`
+-- Database: `caps`
 --
 CREATE DATABASE IF NOT EXISTS `caps` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `caps`;
@@ -28,11 +28,18 @@ USE `caps`;
 -- Estrutura da tabela `contador`
 --
 
+DROP TABLE IF EXISTS `contador`;
 CREATE TABLE IF NOT EXISTS `contador` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `contador` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+`id` int(11) NOT NULL,
+  `contador` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `contador`
+--
+
+INSERT INTO `contador` (`id`, `contador`) VALUES
+(1, 428);
 
 -- --------------------------------------------------------
 
@@ -40,8 +47,9 @@ CREATE TABLE IF NOT EXISTS `contador` (
 -- Estrutura da tabela `salas`
 --
 
+DROP TABLE IF EXISTS `salas`;
 CREATE TABLE IF NOT EXISTS `salas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `numsala` text,
   `nomesala` text,
   `segmanha` text,
@@ -53,201 +61,59 @@ CREATE TABLE IF NOT EXISTS `salas` (
   `quimanha` text,
   `quitarde` text,
   `sexmanha` text,
-  `sextarde` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
---
--- Base de Dados: `phpmyadmin`
---
-CREATE DATABASE IF NOT EXISTS `phpmyadmin` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `phpmyadmin`;
-
--- --------------------------------------------------------
+  `sextarde` text
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
--- Estrutura da tabela `pma_bookmark`
+-- Extraindo dados da tabela `salas`
 --
 
-CREATE TABLE IF NOT EXISTS `pma_bookmark` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dbase` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `user` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `label` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `query` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks' AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pma_column_info`
---
-
-CREATE TABLE IF NOT EXISTS `pma_column_info` (
-  `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `column_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `comment` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `mimetype` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `transformation` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `transformation_options` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin' AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+INSERT INTO `salas` (`id`, `numsala`, `nomesala`, `segmanha`, `segtarde`, `termanha`, `tertarde`, `quamanha`, `quatarde`, `quimanha`, `quitarde`, `sexmanha`, `sextarde`) VALUES
+(1, '1', '1', 'PerÃ­cia', 'Fabiana', 'Rubens', 'Rubens', 'PerÃ­cia', '', '', 'Fabiana', 'Rubens', 'Rubens'),
+(2, '2', '2', 'Leonardo', 'Leonardo', 'Fernanda', 'Mari (estagiaria)', 'Fernanda', 'Fernanda', 'Fernanda', 'Fernanda', 'Fernanda', 'Fabiana'),
+(3, '3', '3', 'Grupo Intensivo de Adolescentes, 9:30, Felipe e Carol', '', '', 'Sandra, laqueadura, 15h', '10:30, Cris - Gr. Familiares', '', 'Nithiane, 9h - avaliaÃ§Ãµes', 'Lizia', 'Nithiane, 10h - Gr. Homens - Aberto (quinzenal >>>24/06/2016)', ''),
+(4, '4', '4', 'Cris, Gr. Mulheres, 16H (sempre na 1Âª segunda do mÃªs)', '', 'Cris V. D. (quinzenal >>>21/06/2016)', 'Alessandra ', 'Nithiane, 9h - Gr. Mulheres', '', 'Carol, at. ind.', 'Alessandra, 13:30, Gr. Pais, (quinzenal >>>23/06/2016)', 'Alessandra, 10:00 - Gr. Adolescentes (quinzenal >>>10/06/2016)', 'Acolh. Lizia (4 vagas p/ crianÃ§as)'),
+(5, '5', '5', '', 'Acolh. Sandra / Cris', 'Sandra, 8:30 - Gr. Mulheres ', 'Fabiana', '', '', '', 'Acolh. Nithiane (4 vagas p/ adultos)', '', 'Acolh. Ana (4 vagas p/ adultos)'),
+(6, '6', '6', '', '13:30 - Acolh. DQ Angela - 15:00, Angela (atend. Indiv.) ', '', '13:30 - Acolh. DQ Angela, 16h - Grupo de prevenÃ§Ã£o a recaÃ­da, c/ Angela ', 'Carol, 9:30 - Gr. Pais (quinzenal >>>22/06/2016) ', '', 'Lizia', '13:30 - Acolh. DQ Angela, 15:00 - Angela (atend. Indiv.) ', '10:15, Lizia/Alessandra, Gr. CrianÃ§as (quinzenal >>>17/06/2016)', '13:30 - Acolh. DQ Angela, 15:30 Grupo de tabagismo/transt. Afetivo Angela (quinzenal >>>10/06/2016)'),
+(7, '7', '7', 'Ana, 10h, Gr. Homens ', 'Ana, 15:45h, Gr. Familiares DQ ', 'Raquel (atend. Indiv.) ', 'Acolhimento, Alessandra (a partir de 29/03) (4 vagas p/ crianÃ§as) e Marcia (4 vagas)', 'Raquel (At. Indiv. ou Gr. Mulheres, 8:30, quinzenal >>>29/06/2016) ', 'BiodanÃ§a, 14h', '', 'Marcia, 15h, Tabagismo ', '', 'Gr. ReduÃ§Ã£o de Danos, Felipe, 13:30  (quinzenal >>>17/06/2016)'),
+(8, '8', '8', '', '', '', '', 'Fabiola, 8:30', '', '', '', '', ''),
+(9, '9', 'Of. 1', '', '', '', '', 'Fabiola/Raquel, 10h - Gr. Homens ', '', '', '', '', ''),
+(10, '10', 'Of. 2', '', 'FabÃ­ola, 14h, Gr. SaÃºde - 15h Ã s 17h, At. Individual ', 'FabÃ­ola e Miriam, 8:30 Ã s 13:30 (intensivo) ', 'Raquel (of. terapÃªutica) Ã s 13:30 - FabÃ­ola, 13:30, Gr. Mulheres ', 'Ana e Marcia, Grupo DQ - 9h ', '', 'FabÃ­ola e Miriam, 8:30 Ã s 13:30, intensivo //// Fabiola, Gr. Mulheres, 13:30', 'Fabiola, 13:30/15h, Intensivo ', '', '15h: AvaliaÃ§Ã£o encaminhamentos Of. Terap., T. O., Grupo Terap. e Intensivo, FabÃ­ola (quinzenal >>>24/06/2016) - FabÃ­ola/Nithiane, Intensivo (quinzenal) - 15:30: Gr. Mulheres '),
+(11, '11', 'Of. 3', 'Miriam, 08:30, Gr. Mulheres ', 'Miriam, 14h, Gr. Mulheres ', '', 'Miriam e Sandra, 13:30 Ã s 15h ', 'Miriam, 8:30 - Mulheres ', '', '', '', 'Miriam, 9:30, Gr. Mulheres ', 'Nithiane '),
+(12, '12', 'Of. 4', 'Fabiola, Gr. CrianÃ§as 10:30 ', 'Carol e Alessandra, Gr. Adol., 13:30 (quinzenal >>>20/06/2016) - Carol, Gr. CrianÃ§as, 15:30 (quinzenal >>>27/06/2016) ', '', '', 'Nithiane, Gr. Mulheres, 8:30 ', '', '', '', '', 'Gr. Jovens Ad., Nithiane, 13:30 (quinzenal >>>10/06/2016)'),
+(13, '13', 'Of. 5', 'Sandra/Cris, 9h, intensivo / 9:30 - 11:30 ', '', '', '', '', '', '', '', 'Raquel / FabÃ­ola / Miriam, 8:30, Gr. Intensivo - 9:30, Of. MÃºsica ', ''),
+(14, '14', 'Externo', 'Fabiola, 8:30, Gr. Horta ', '', '', '', '', '', '', '', '', '');
 
 --
--- Estrutura da tabela `pma_designer_coords`
+-- Indexes for dumped tables
 --
 
-CREATE TABLE IF NOT EXISTS `pma_designer_coords` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `x` int(11) DEFAULT NULL,
-  `y` int(11) DEFAULT NULL,
-  `v` tinyint(4) DEFAULT NULL,
-  `h` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`db_name`,`table_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for Designer';
-
--- --------------------------------------------------------
+--
+-- Indexes for table `contador`
+--
+ALTER TABLE `contador`
+ ADD PRIMARY KEY (`id`);
 
 --
--- Estrutura da tabela `pma_history`
+-- Indexes for table `salas`
 --
-
-CREATE TABLE IF NOT EXISTS `pma_history` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `sqlquery` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `username` (`username`,`db`,`table`,`timevalue`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin' AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+ALTER TABLE `salas`
+ ADD PRIMARY KEY (`id`);
 
 --
--- Estrutura da tabela `pma_pdf_pages`
+-- AUTO_INCREMENT for dumped tables
 --
 
-CREATE TABLE IF NOT EXISTS `pma_pdf_pages` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `page_nr` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `page_descr` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  PRIMARY KEY (`page_nr`),
-  KEY `db_name` (`db_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin' AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `pma_recent`
+-- AUTO_INCREMENT for table `contador`
 --
-
-CREATE TABLE IF NOT EXISTS `pma_recent` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `tables` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
-
--- --------------------------------------------------------
-
+ALTER TABLE `contador`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- Estrutura da tabela `pma_relation`
+-- AUTO_INCREMENT for table `salas`
 --
-
-CREATE TABLE IF NOT EXISTS `pma_relation` (
-  `master_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `master_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `master_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `foreign_db` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `foreign_table` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `foreign_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  PRIMARY KEY (`master_db`,`master_table`,`master_field`),
-  KEY `foreign_field` (`foreign_db`,`foreign_table`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pma_table_coords`
---
-
-CREATE TABLE IF NOT EXISTS `pma_table_coords` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `pdf_page_number` int(11) NOT NULL DEFAULT '0',
-  `x` float unsigned NOT NULL DEFAULT '0',
-  `y` float unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pma_table_info`
---
-
-CREATE TABLE IF NOT EXISTS `pma_table_info` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `display_field` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  PRIMARY KEY (`db_name`,`table_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pma_table_uiprefs`
---
-
-CREATE TABLE IF NOT EXISTS `pma_table_uiprefs` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `prefs` text COLLATE utf8_bin NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`username`,`db_name`,`table_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pma_tracking`
---
-
-CREATE TABLE IF NOT EXISTS `pma_tracking` (
-  `db_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `table_name` varchar(64) COLLATE utf8_bin NOT NULL,
-  `version` int(10) unsigned NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
-  `schema_snapshot` text COLLATE utf8_bin NOT NULL,
-  `schema_sql` text COLLATE utf8_bin,
-  `data_sql` longtext COLLATE utf8_bin,
-  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') COLLATE utf8_bin DEFAULT NULL,
-  `tracking_active` int(1) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`db_name`,`table_name`,`version`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=COMPACT COMMENT='Database changes tracking for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `pma_userconfig`
---
-
-CREATE TABLE IF NOT EXISTS `pma_userconfig` (
-  `username` varchar(64) COLLATE utf8_bin NOT NULL,
-  `timevalue` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `config_data` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
-
+ALTER TABLE `salas`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
